@@ -1,11 +1,16 @@
 function handleBackground(div) {
   const pic = div.querySelector('picture');
+  const section = div.closest('.section');
   if (pic) {
-    const section = div.closest('.section');
     if (section) {
       section.classList.add('has-background');
       pic.classList.add('section-background');
       section.insertAdjacentElement('afterbegin', pic);
+    }
+  } else {
+    const color = div.textContent;
+    if (color && section) {
+      section.style.backgroundColor = color;
     }
   }
 }
