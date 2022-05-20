@@ -99,6 +99,7 @@
 
 .marquee .text img {
   height: 56px;
+  width: auto;
 }
 
 .marquee.large .text img {
