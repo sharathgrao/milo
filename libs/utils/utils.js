@@ -60,7 +60,7 @@ export async function loadBlock(block) {
     })();
   });
   await Promise.all([styleLoaded, scriptLoaded]);
-  block.dataset.status = 'loaded';
+  delete block.dataset.status;
   return block;
 }
 
