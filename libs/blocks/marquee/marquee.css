@@ -98,11 +98,11 @@
 }
 
 .marquee .text img {
-  max-height: 56px;
+  height: 56px;
 }
 
 .marquee.large .text img {
-  max-height: 64px;
+  height: 64px;
 }
 
 .marquee .action-area {
