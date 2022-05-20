@@ -288,7 +288,7 @@ main [data-status='loading'] {
   display: none;
 }
 
-main > .section[data-status='loaded'] {
+main > .section {
   display: block;
   position: relative;
 }
@@ -297,12 +297,4 @@ main > .section > .content {
   display: block;
   max-width: var(--grid-container-width);
   margin: 0 auto;
-}
-
-main > .section > .content > *:first-child {
-  margin-top: 0;
-}
-
-main > .section > .content > *:last-child {
-  margin-bottom: 0;
 }

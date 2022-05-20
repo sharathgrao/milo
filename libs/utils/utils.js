@@ -61,13 +61,6 @@ export async function loadBlock(block) {
   });
   await Promise.all([styleLoaded, scriptLoaded]);
   block.dataset.status = 'loaded';
-  console.log(block.nextElementSibling);
-  if (!block.nextElementSibling) {
-    const section = block.closest('.section');
-    if (section) {
-      section.dataset.status = 'loaded';
-    }
-  }
   return block;
 }
 
