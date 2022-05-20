@@ -148,7 +148,7 @@
 .marquee .image img {
   display: block;
   width: 100%;
-  min-height: 150px; /* fixed with breaking 05 */
+  height: auto;
 }
 
 .marquee .text,
