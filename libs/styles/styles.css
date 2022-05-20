@@ -288,7 +288,7 @@ main [data-status='loading'] {
   display: none;
 }
 
-main > .section {
+main > .section[data-status='loaded'] {
   display: block;
   position: relative;
 }
