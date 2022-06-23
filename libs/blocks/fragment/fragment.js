@@ -29,7 +29,7 @@ const updateFragMap = (fragment, a, href) => {
 export default async function init(a, parent) {
   const relHref = makeRelative(a.href);
   if (isCircularRef(relHref)) {
-    console.log(`ERROR: Fragment Circular Reference loading ${a.href}`)
+    console.log(`ERROR: Fragment Circular Reference loading ${a.href}`);
     return;
   }
   const resp = await fetch(`${a.href}.plain.html`);

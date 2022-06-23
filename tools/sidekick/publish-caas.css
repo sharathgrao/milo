@@ -1,0 +1,13 @@
+.hlx-sk .publish {
+    align-items: center;
+    display: flex;
+    margin-right: 10px;
+}
+
+.hlx-sk .publish label {
+    order: 2;
+}
+
+.hlx-sk .publish #caas-cb {
+    order: 1;
+}
