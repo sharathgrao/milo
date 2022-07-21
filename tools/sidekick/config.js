@@ -46,54 +46,40 @@ function hasSchema(host) {
     plugins: [
       {
         id: 'register-caas',
-        condition: (s) => s.isHelix() && s.isContent(),
+        condition: (s) => s.isHelix() && s.isContent() && !window.location.pathname.endsWith('.json'),
         button: {
           text: 'Register with CaaS',
-          action: async (_, s) => {
-            if (!window.milo?.cardMetadata) {
-              const { getCardMetadata } = await import('../../libs/blocks/card-metadata/card-metadata.js');
-              getCardMetadata();
-            }
-            const metadata = window.milo.cardMetadata || {};
-
+          action: async (_, sk) => {
+            const { default: publishCaas } = await import('../publish-caas/publish-caas.js');
+            publishCaas(sk.config.host, sk);
           },
         },
       },
-      // {
-      //   id: 'publish',
-      //   condition: (s) => s.isHelix() && s.isContent(),
-      //   override: false,
-      //   callback: (s) => {
-      //     s.loadCSS('/tools/sidekick/publish-caas.css');
-      //     s.addEventListener('published', () => {
-      //       console.log('PUBLISHED');
-      //     });
-      //   },
-      //   elements: [
-      //     {
-      //       tag: 'label',
-      //       text: 'Register with CaaS',
-      //       attrs: { for: 'caas-cb' },
-      //     },
-      //     {
-      //       tag: 'input',
-      //       attrs: { id: 'caas-cb', type: 'checkbox' },
-      //     },
-      //   ],
-      //   button: {
-      //     // text: 'New Publish',
-      //     action: async (_, s) => {
-      //       console.log(_, s);
-      //       if (!window.milo?.cardMetadata) {
-      //         const { getCardMetadata } = await import(
-      //           '../../libs/blocks/card-metadata/card-metadata.js'
-      //         );
-      //         getCardMetadata();
-      //       }
-      //       const metadata = window.milo.cardMetadata || {};
-      //     },
-      //   },
-      // },
+      {
+        id: 'publish',
+        condition: (s) => s.isHelix() && s.isContent(),
+        override: false,
+        callback: (s) => {
+          s.loadCSS('/tools/publish-caas/publish-caas.css');
+          s.addEventListener('published', async ({ currentTarget: sk }) => {
+            if (sk.querySelector('#caas-cb').checked) {
+              const { default: publishCaas } = await import('../publish-caas/publish-caas.js');
+              publishCaas(s.config.host);
+            }
+          });
+        },
+        elements: [
+          {
+            tag: 'label',
+            text: 'Register with CaaS',
+            attrs: { for: 'caas-cb' },
+          },
+          {
+            tag: 'input',
+            attrs: { id: 'caas-cb', type: 'checkbox' },
+          },
+        ],
+      },
       // TOOLS ---------------------------------------------------------------------
       {
         id: 'library',
